@@ -44,3 +44,5 @@ export HOMEBREW_AUTO_UPDATE_SECS=86400 # Update only once a day
 # Additional brew recommendations
 export BYOBU_PREFIX=$(brew --prefix)
 
+# Homebrew cask settings
+export HOMEBREW_CASK_OPTS="--no-quarantine"
