@@ -36,6 +36,11 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-export HOMEBREW_NO_ANALYTICS=1 #Don't spy on me!
+
+# Homebrew settings
+export HOMEBREW_NO_ANALYTICS=1 # Don't spy on me!
+export HOMEBREW_AUTO_UPDATE_SECS=86400 # Update only once a day
+
+# Additional brew recommendations
 export BYOBU_PREFIX=$(brew --prefix)
 
