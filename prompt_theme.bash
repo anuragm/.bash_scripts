@@ -74,7 +74,7 @@ shortpath () {
 }
 
 parse_git_dirty () {
-  [ ! -z "$(git status --porcelain 2> /dev/null)" ] && echo '*'
+  [ ! -z "$(git status --porcelain 2> /dev/null | grep -v '??')" ] && echo '*'
 }
 
 parse_git_branch () {
