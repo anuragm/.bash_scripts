@@ -31,11 +31,20 @@ brew-cask-upgrade() {
 #Add brew sbin path
 export PATH=$(brew --prefix)/sbin:$PATH
 
-#Making bash autocompletion work.
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+# Making bash autocompletion work.
+# brew install bash-completion
+# https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  source "${HOMEBREW_PREFIX}/etc/bash_completion"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
 fi
-
 
 # Homebrew settings
 export HOMEBREW_NO_ANALYTICS=1 # Don't spy on me!
