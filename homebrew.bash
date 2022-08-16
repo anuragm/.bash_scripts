@@ -28,6 +28,11 @@ brew-cask-upgrade() {
     done
 }
 
+# Add Homebrew to system PATH if it is in a non-standard location
+if [ -f /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 #Add brew sbin path
 export PATH=$(brew --prefix)/sbin:$PATH
 
